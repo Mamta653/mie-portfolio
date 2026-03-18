@@ -3,7 +3,7 @@ import Sidebar from './components/Sidebar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
 import TechStack from './components/TechStack';
-import Resume from "./components/resume"
+import Resume from "./components/Resume"
 import Contact from './components/Contact';
 
 function App() {
