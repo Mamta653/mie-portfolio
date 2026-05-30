@@ -2,16 +2,10 @@ import { useState } from 'react';
 import { Mail, Linkedin, Github, Send } from 'lucide-react';
 import { submitContact } from '../services/api';
 
-
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
-
-
-    const [resumeFile, setResumeFile] = useState<File | null>(null);
-  const [resumeUploaded, setResumeUploaded] = useState(false);
-  const [dragOver, setDragOver] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
