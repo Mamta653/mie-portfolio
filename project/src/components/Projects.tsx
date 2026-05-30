@@ -33,20 +33,6 @@ export default function Projects() {
       status: 'live',
       github: 'https://github.com/Mamta653/Todo-app',
     },
-    {
-      title: 'Spotify Clone',
-      description:
-        'A frontend clone of Spotify\'s UI built while learning React. Features playlist browsing, music player controls, and a responsive layout mimicking the original design.',
-      tags: ['React', 'CSS', 'JavaScript'],
-      status: 'coming-soon',
-    },
-    {
-      title: 'More Coming Soon',
-      description:
-        'Currently learning and building. New projects will be added here as they are completed. Follow my GitHub to stay updated.',
-      tags: [],
-      status: 'coming-soon',
-    },
   ];
 
   return (
