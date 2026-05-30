@@ -1,4 +1,4 @@
-import { Code2, Layers, Zap, Database, Cloud, Shield } from 'lucide-react';
+import { Code2, Layers, Zap, Database, Server, GitBranch, Box, Braces } from 'lucide-react';
 
 interface TechIconProps {
   icon: React.ReactNode;
@@ -49,19 +49,29 @@ function TechIcon({ icon, name, category, delay = 0 }: TechIconProps) {
 export default function TechStack() {
   const technologies = [
     {
+      icon: <Zap size={48} className="text-emerald-400" strokeWidth={1.5} />,
+      name: 'React',
+      category: 'Frontend',
+    },
+    {
+      icon: <Braces size={48} className="text-emerald-400" strokeWidth={1.5} />,
+      name: 'TypeScript',
+      category: 'Language',
+    },
+    {
       icon: <Code2 size={48} className="text-emerald-400" strokeWidth={1.5} />,
       name: 'Java',
       category: 'Backend',
     },
     {
-      icon: <Layers size={48} className="text-emerald-400" strokeWidth={1.5} />,
-      name: 'Spring Boot',
-      category: 'Framework',
+      icon: <Server size={48} className="text-emerald-400" strokeWidth={1.5} />,
+      name: 'Node.js',
+      category: 'Runtime',
     },
     {
-      icon: <Zap size={48} className="text-emerald-400" strokeWidth={1.5} />,
-      name: 'React',
-      category: 'Frontend',
+      icon: <Layers size={48} className="text-emerald-400" strokeWidth={1.5} />,
+      name: 'NestJS',
+      category: 'Framework',
     },
     {
       icon: <Database size={48} className="text-slate-400" strokeWidth={1.5} />,
@@ -69,14 +79,14 @@ export default function TechStack() {
       category: 'Database',
     },
     {
-      icon: <Cloud size={48} className="text-slate-400" strokeWidth={1.5} />,
-      name: 'AWS',
-      category: 'Cloud',
+      icon: <Box size={48} className="text-slate-400" strokeWidth={1.5} />,
+      name: 'Supabase',
+      category: 'Backend as a Service',
     },
     {
-      icon: <Shield size={48} className="text-slate-400" strokeWidth={1.5} />,
-      name: 'Security',
-      category: 'Best Practices',
+      icon: <GitBranch size={48} className="text-slate-400" strokeWidth={1.5} />,
+      name: 'Git',
+      category: 'Version Control',
     },
   ];
 
@@ -89,11 +99,11 @@ export default function TechStack() {
           </h2>
           <div className="h-1 w-32 bg-gradient-to-r from-emerald-500 to-transparent" />
           <p className="text-slate-400 text-lg mt-6 max-w-2xl leading-relaxed font-light">
-            Enterprise-grade technologies powering mission-critical applications
+            Technologies I work with to build modern, scalable applications
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 place-items-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8 place-items-center">
           {technologies.map((tech, index) => (
             <TechIcon
               key={tech.name}
