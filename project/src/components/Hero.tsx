@@ -25,10 +25,65 @@ export default function Hero() {
           0%   { transform: translate(0px, 0px) scale(1); }
           100% { transform: translate(50px, -40px) scale(1.2); }
         }
+        @keyframes shimmerMove {
+          0%   { background-position: 0% 50%; }
+          50%  { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        @keyframes borderPulse {
+          0%, 100% { opacity: 0.6; }
+          50%       { opacity: 1; }
+        }
+        .photo-frame {
+          position: relative;
+          border-radius: 14px;
+        }
+        /* Layer 1 — hairline shimmer gradient border */
+        .photo-frame::before {
+          content: '';
+          position: absolute;
+          inset: -1px;
+          border-radius: 15px;
+          background: linear-gradient(
+            160deg,
+            rgba(80, 200, 120, 0.9) 0%,
+            rgba(80, 200, 120, 0.2) 30%,
+            rgba(112, 128, 144, 0.15) 50%,
+            rgba(80, 200, 120, 0.2) 70%,
+            rgba(80, 200, 120, 0.85) 100%
+          );
+          background-size: 300% 300%;
+          animation: shimmerMove 6s ease infinite, borderPulse 4s ease-in-out infinite;
+          z-index: 0;
+        }
+        /* Layer 2 — soft outer glow halo */
+        .photo-frame::after {
+          content: '';
+          position: absolute;
+          inset: -6px;
+          border-radius: 20px;
+          background: transparent;
+          box-shadow:
+            0 0 18px 2px rgba(80, 200, 120, 0.18),
+            0 0 40px 4px rgba(80, 200, 120, 0.08);
+          animation: borderPulse 4s ease-in-out infinite;
+          z-index: 0;
+          pointer-events: none;
+        }
+        .photo-frame-inner {
+          position: relative;
+          z-index: 1;
+          border-radius: 14px;
+          overflow: hidden;
+          width: 100%;
+          height: 100%;
+          background: #121212;
+        }
       `}</style>
 
       <div className="max-w-7xl w-full mx-auto flex items-center justify-between relative z-10 gap-12">
 
+        {/* Left: Text */}
         <div className="space-y-8 flex-1">
           <h1
             className="text-7xl md:text-9xl font-bold tracking-tighter"
@@ -85,18 +140,58 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="hidden md:block relative flex-shrink-0" style={{ width: '480px', height: '620px' }}>
-          <img
-            src={mamtaPhoto}
-            alt="Mamta"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center top',
-              filter: 'brightness(0.9) contrast(1.05)',
-            }}
-          />
+        {/* Right: Framed photo */}
+        <div
+          className="photo-frame hidden md:flex flex-shrink-0"
+          style={{ width: '400px', height: '500px' }}
+        >
+          <div className="photo-frame-inner">
+            <img
+              src={mamtaPhoto}
+              alt="Mamta"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center top',
+                display: 'block',
+                WebkitMaskImage: `
+                  linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%),
+                  linear-gradient(to bottom, transparent 0%, black 6%, black 90%, transparent 100%)
+                `,
+                maskImage: `
+                  linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%),
+                  linear-gradient(to bottom, transparent 0%, black 6%, black 90%, transparent 100%)
+                `,
+                WebkitMaskComposite: 'source-in',
+                maskComposite: 'intersect',
+                filter: 'brightness(0.82) contrast(1.08) saturate(0.9)',
+              }}
+            />
+            {/* Emerald/slate colour tint overlay */}
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(80,200,120,0.10) 0%, rgba(112,128,144,0.14) 50%, rgba(80,200,120,0.08) 100%)',
+              backgroundSize: '300% 300%',
+              animation: 'shimmerMove 8s ease infinite',
+              mixBlendMode: 'color',
+              borderRadius: '14px',
+              pointerEvents: 'none',
+            }} />
+            {/* Dark vignette edges */}
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              borderRadius: '14px',
+              background: `
+                radial-gradient(ellipse at center, transparent 45%, rgba(18,18,18,0.55) 100%),
+                linear-gradient(to right, rgba(18,18,18,0.4) 0%, transparent 18%, transparent 82%, rgba(18,18,18,0.4) 100%),
+                linear-gradient(to bottom, rgba(18,18,18,0.3) 0%, transparent 12%, transparent 88%, rgba(18,18,18,0.45) 100%)
+              `,
+              pointerEvents: 'none',
+            }} />
+          </div>
         </div>
 
       </div>
