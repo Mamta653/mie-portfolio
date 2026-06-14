@@ -29,15 +29,18 @@ export default function Projects() {
   ];
 
   return (
-    <section className='min-h-screen py-32 px-16'>
-      <div className='max-w-7xl mx-auto'>
-        <div className='mb-20'>
-          <h2 className='text-6xl font-bold text-white tracking-tight mb-4'>
+    <section className="py-16 md:py-24 px-4 md:px-16">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-10 md:mb-20">
+          <h2
+            className="font-bold text-white tracking-tight mb-4"
+            style={{ fontSize: 'clamp(2rem, 8vw, 3.75rem)' }}
+          >
             Featured Projects
           </h2>
-          <div className='h-1 w-32 bg-gradient-to-r from-emerald-500 to-transparent' />
+          <div className="h-1 w-32 bg-gradient-to-r from-emerald-500 to-transparent" />
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {projects.map((project, index) => (
             <ProjectCard
               key={project.title}
